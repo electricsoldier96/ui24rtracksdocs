@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Documentação do Aplicativo — Guia Rápido</title>
+  <style>
+    :root{
+      --bg:#0f1720; --card:#0b1220; --muted:#9aa4b2; --accent:#4ec5b0; --glass: rgba(255,255,255,0.04);
+      --font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:var(--font-sans); background:linear-gradient(180deg,#071226 0%, #07101a 100%); color:#e6eef6;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; line-height:1.45;
+    }
+    /* Layout */
+    .wrap{display:grid; grid-template-columns:320px 1fr; gap:24px; max-width:1200px; margin:28px auto; padding:20px;}
+    .sidebar{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:12px; padding:18px; box-shadow:0 6px 18px rgba(2,6,23,0.6); height:calc(100vh - 80px); position:sticky; top:20px; overflow:auto}
+    .brand{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#2f9db2);display:flex;align-items:center;justify-content:center;font-weight:700;color:#042;box-shadow:0 4px 14px rgba(46,197,176,0.12)}
+    h1{font-size:16px;margin:0}
+    .muted{color:var(--muted);font-size:13px}
+    nav ul{list-style:none;padding:0;margin:18px 0}
+    nav li{margin:8px 0}
+    nav a{display:block;padding:8px 10px;border-radius:8px;color:inherit;text-decoration:none;font-size:14px}
+    nav a.active, nav a:hover{background:var(--glass); color:var(--accent)}
+
+    .content{padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent); border-radius:12px; box-shadow:0 8px 30px rgba(2,6,23,0.6); min-height:80vh}
+    .hero{display:flex;justify-content:space-between;align-items:center}
+    .hero h2{margin:0 0 6px 0}
+    .hero p{margin:0;color:var(--muted)}
+
+    section{margin-top:20px}
+    .card{background:rgba(255,255,255,0.02); padding:16px; border-radius:10px}
+    pre{background:#021023;padding:12px;border-radius:8px;overflow:auto;font-size:13px}
+    code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; font-size:13px}
+
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .step{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+    .step h4{margin:4px 0}
+    .screenshot{height:160px;background:linear-gradient(135deg,#081525 0%, #04101a 100%);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px}
+
+    .flex{display:flex;gap:12px;align-items:center}
+    .right{margin-left:auto}
+
+    /* Search */
+    .search{display:flex;gap:8px;margin-top:10px}
+    .search input{flex:1;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:900px){.wrap{grid-template-columns:1fr; padding:12px} .sidebar{position:relative;height:auto;order:2}.content{order:1}}
+
+    /* Print */
+    @media print{body{background:white;color:black} .sidebar, .search{display:none} .content{box-shadow:none}}
+
+    /* Copy button */
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;cursor:pointer}
+    .btn:active{transform:translateY(1px)}
+    .badge{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:8px;font-size:12px}
+
+    /* Tiny helpers */
+    .kbd{background:#031426;padding:4px 6px;border-radius:6px;border:1px solid rgba(255,255,255,0.03);font-family:inherit}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <aside class="sidebar" aria-label="Navegação da documentação">
+      <div class="brand">
+        <div class="logo">App</div>
+        <div>
+          <h1>Guia do Aplicativo</h1>
+          <div class="muted">Versão: 1.0 • Última atualização: 2025-10-30</div>
+        </div>
+      </div>
+
+      <div class="search">
+        <input id="search" placeholder="Pesquisar tópicos (ex: tela, login, backup)" />
+        <button class="btn" id="clearSearch">Limpar</button>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#overview" class="navlink active">Visão Geral</a></li>
+          <li><a href="#install" class="navlink">Instalação</a></li>
+          <li><a href="#screens" class="navlink">Explicação de Telas</a></li>
+          <li><a href="#stepbystep" class="navlink">Passo a Passo</a></li>
+          <li><a href="#tips" class="navlink">Dicas & Boas Práticas</a></li>
+          <li><a href="#faq" class="navlink">FAQ</a></li>
+          <li><a href="#shortcuts" class="navlink">Atalhos</a></li>
+          <li><a href="#changelog" class="navlink">Changelog</a></li>
+        </ul>
+      </nav>
+
+      <div style="margin-top:18px;font-size:13px;color:var(--muted)">
+        <div style="margin-bottom:8px">Contato de suporte:</div>
+        <div class="card small">
+          <div>Email: <strong>suporte@empresa.com</strong></div>
+          <div>Doc versão: <span class="badge">1.0</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="hero">
+        <div>
+          <h2 id="overview">Visão Geral</h2>
+          <p class="muted">Este guia explica como instalar, usar e solucionar problemas do aplicativo — com imagens de tela, passos e dicas.</p>
+        </div>
+        <div class="flex">
+          <div class="small">Modo de exibição:</div>
+          <button class="btn" id="toggleTheme">Alternar tema</button>
+        </div>
+      </div>
+
+      <section id="install" class="card">
+        <h3>Instalação</h3>
+        <p class="small">Instruções gerais para instalar o aplicativo em Android / iOS / Desktop (PWA).</p>
+
+        <h4>Android (APK)</h4>
+        <ol>
+          <li>Baixe o arquivo <code>.apk</code> pelo link fornecido pelo time.</li>
+          <li>Permita instalações de fontes desconhecidas nas configurações do dispositivo.</li>
+          <li>Abra o APK e siga o instalador.</li>
+        </ol>
+
+        <h4>iOS / TestFlight</h4>
+        <ol>
+          <li>Receba o convite do TestFlight.</li>
+          <li>Instale via TestFlight e aceite as permissões solicitadas.</li>
+        </ol>
+
+        <h4>Desktop (PWA)</h4>
+        <p>Abra no navegador e instale como PWA (opção "Instalar" no menu do navegador).</p>
+
+        <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+          <button class="btn" data-copy="Baixe o APK em: https://example.com/app.apk">Copiar link de download</button>
+          <div class="small" id="copyFeedback"></div>
+        </div>
+      </section>
+
+      <section id="screens" class="card">
+        <h3>Explicação de Telas</h3>
+        <p class="small">Resumo das principais telas do aplicativo e seus elementos.</p>
+
+        <div class="steps">
+          <div class="step">
+            <h4>Tela de Login</h4>
+            <div class="screenshot">[Imagem: Login]</div>
+            <p class="small">Campos: email, senha, botão "Entrar". Link para recuperar senha.</p>
+          </div>
+
+          <div class="step">
+            <h4>Tela Principal / Dashboard</h4>
+            <div class="screenshot">[Imagem: Dashboard]</div>
+            <p class="small">Resumo das métricas, atalhos para ações rápidas e menu lateral.</p>
+          </div>
+
+          <div class="step">
+            <h4>Tela de Configurações</h4>
+            <div class="screenshot">[Imagem: Configurações]</div>
+            <p class="small">Ajustes do usuário (tema, notificações, conta) e opções de backup.</p>
+          </div>
+        </div>
+
+        <details style="margin-top:12px"><summary>Veja mais telas e descrições</summary>
+          <ul>
+            <li>Tela de criação/edição — formulário com validação e pré-visualização.</li>
+            <li>Tela de relatórios — filtros por data e exportação CSV/PDF.</li>
+            <li>Tela offline — armazenagem local e sincronização quando online.</li>
+          </ul>
+        </details>
+      </section>
+
+      <section id="stepbystep" class="card">
+        <h3>Passo a Passo — Primeira execução</h3>
+        <ol>
+          <li>Abra o aplicativo e crie uma conta (ou faça login).</li>
+          <li>Siga o assistente inicial para configurar preferências básicas.</li>
+          <li>Conceda permissões solicitadas (localização, notificações) se necessário.</li>
+          <li>Crie seu primeiro item usando o botão "+" no Dashboard.</li>
+          <li>Verifique se os dados aparecem em relatórios e, se desejar, faça um backup.</li>
+        </ol>
+
+        <h4>Exemplo de como criar um item</h4>
+        <pre><code>// Pseudocódigo: criar item
+app.open('new')
+form.title = 'Meu item'
+form.save()
+</code></pre>
+
+        <div style="margin-top:12px" class="card">
+          <strong>Sincronização manual</strong>
+          <p class="small">Vá em Configurações → Backup → Sincronizar agora.</p>
+        </div>
+      </section>
+
+      <section id="tips" class="card">
+        <h3>Dicas & Boas Práticas</h3>
+        <ul>
+          <li>Mantenha o app atualizado para corrigir bugs e ter novas funcionalidades.</li>
+          <li>Ative backups automáticos para evitar perda de dados.</li>
+          <li>Use conexões seguras (Wi‑Fi confiável) ao sincronizar grandes volumes.</li>
+          <li>Se tiver dados sensíveis, ative bloqueio por PIN/biometria.</li>
+        </ul>
+      </section>
+
+      <section id="faq" class="card">
+        <h3>FAQ</h3>
+        <details><summary>O app funciona offline?</summary><p class="small">Sim — é possível usar offline. As ações ficarão em fila e serão sincronizadas quando o dispositivo reconectar à internet.</p></details>
+        <details><summary>Como recuperar a senha?</summary><p class="small">Na tela de login clique em "Esqueci a senha" e siga as instruções enviadas por e-mail.</p></details>
+        <details><summary>Preciso pagar para usar?</summary><p class="small">Existem planos gratuitos e pagos. Consulte a tela de planos dentro do app.</p></details>
+      </section>
+
+      <section id="shortcuts" class="card">
+        <h3>Atalhos e comandos úteis</h3>
+        <div class="flex">
+          <div>Salvar: <span class="kbd">Ctrl</span> + <span class="kbd">S</span></div>
+          <div class="right">Abrir busca: <span class="kbd">Ctrl</span> + <span class="kbd">K</span></div>
+        </div>
+      </section>
+
+      <section id="changelog" class="card">
+        <h3>Changelog</h3>
+        <ul>
+          <li>v1.0 — Lançamento inicial (2025-10-30)</li>
+        </ul>
+      </section>
+
+      <footer style="margin-top:18px;text-align:center;color:var(--muted)">
+        <div>Precisa que eu gere um PDF dessa página ou faça versões em PT/EN? Peça que eu gere.</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Simple interactions: navigation highlight, copy, search, theme toggle
+    const navlinks = document.querySelectorAll('.navlink');
+    navlinks.forEach(a=>a.addEventListener('click', e=>{
+      navlinks.forEach(x=>x.classList.remove('active'));
+      a.classList.add('active');
+    }));
+
+    // Copy example link buttons
+    document.querySelectorAll('button[data-copy]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const txt = btn.getAttribute('data-copy');
+        navigator.clipboard?.writeText(txt).then(()=>{
+          const fb = document.getElementById('copyFeedback');
+          fb.textContent = 'Copiado para a área de transferência!';
+          setTimeout(()=>fb.textContent = '',2000);
+        }).catch(()=>{
+          alert('Não foi possível copiar — copie manualmente:\n'+txt);
+        });
+      });
+    });
+
+    // Clear search
+    document.getElementById('clearSearch').addEventListener('click', ()=>{
+      document.getElementById('search').value = '';
+      filterSearch('');
+    });
+
+    // Search (simple): highlights sections whose text contains query
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', ()=> filterSearch(searchInput.value));
+    function filterSearch(q){
+      q = (q||'').trim().toLowerCase();
+      document.querySelectorAll('main section').forEach(sec=>{
+        const txt = sec.textContent.toLowerCase();
+        sec.style.display = q && !txt.includes(q) ? 'none' : '';
+      });
+    }
+
+    // Theme toggle (light/dark via CSS variables)
+    const toggle = document.getElementById('toggleTheme');
+    let lightMode = false;
+    toggle.addEventListener('click', ()=>{
+      lightMode = !lightMode;
+      if(lightMode){
+        document.documentElement.style.setProperty('--bg','#f7fafc');
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.documentElement.style.setProperty('--muted','#475569');
+        document.documentElement.style.setProperty('--accent','#0ea5a4');
+        document.body.style.color = '#0b2130';
+      } else {
+        document.documentElement.style.removeProperty('--bg');
+        document.documentElement.style.removeProperty('--card');
+        document.documentElement.style.removeProperty('--muted');
+        document.documentElement.style.removeProperty('--accent');
+        document.body.style.color = '';
+      }
+    });
+
+    // Keyboard shortcuts: Ctrl+K focuses search
+    window.addEventListener('keydown', (e)=>{
+      if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k'){
+        e.preventDefault(); document.getElementById('search').focus();
+      }
+      if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's'){
+        // pretend save
+        e.preventDefault(); alert('Salvar (simulado) — certifique-se de implementar no app.');
+      }
+    });
+  </script>
+</body>
+</html>
